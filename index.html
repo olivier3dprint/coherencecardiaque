@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cohérence cardiaque — respiration guidée 365 gratuite</title>
+<meta name="description" content="Application gratuite de cohérence cardiaque : respiration guidée 365, 6 respirations par minute, 3 fois par jour. Bulle animée, vibrations, sons et voix, même écran verrouillé.">
+<meta property="og:title" content="Cohérence cardiaque">
+<meta property="og:description" content="Respiration guidée 365 : suivez la bulle ou fermez les yeux et laissez-vous guider par les vibrations et les sons.">
+<meta property="og:image" content="https://olivier3dprint.github.io/coherencecardiaque/images/partage-fr.jpg">
+<link rel="icon" type="image/png" href="images/icone.png">
+<style>
+  :root {
+    --fond: #10283f;
+    --texte: #e8f1f3;
+    --texte-att: #a3bcc6;
+    --turquoise: #2ba8a0;
+    --turquoise-doux: #8fdad3;
+    --ciel: #9cc8ec;
+    --bordure: #234560;
+    --panneau: #153452;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--texte);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 96px;
+  }
+  a { color: var(--turquoise-doux); }
+
+  html:not([data-lang="en"]) .txt-en { display: none; }
+  html[data-lang="en"] .txt-fr { display: none; }
+
+  /* En-tête : halo turquoise et ondes concentriques derrière l'icône, comme la bulle de l'app. */
+  .hero {
+    text-align: center;
+    padding: 20px 20px 64px;
+    background:
+      radial-gradient(circle at 50% 200px, rgba(43, 168, 160, 0.50) 0, rgba(43, 168, 160, 0.16) 140px, transparent 320px),
+      linear-gradient(to bottom, #1a5a70 0%, var(--fond) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .ondes {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  .ondes span {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .ondes span:nth-child(1) { width: 190px; height: 190px; }
+  .ondes span:nth-child(2) { width: 290px; height: 290px; border-color: rgba(255, 255, 255, 0.10); }
+  .ondes span:nth-child(3) { width: 400px; height: 400px; border-color: rgba(255, 255, 255, 0.06); }
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+  }
+  #bouton-langue {
+    background: rgba(21, 52, 82, 0.8);
+    border: 1px solid var(--bordure);
+    color: var(--texte);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #bouton-langue:hover { border-color: var(--turquoise); }
+
+  .icone {
+    width: 96px;
+    height: 96px;
+    border-radius: 22px;
+    margin: 104px auto 22px;
+    display: block;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  }
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    position: relative;
+  }
+  .tagline {
+    font-size: 1.15rem;
+    color: #d2e4e8;
+    max-width: 620px;
+    margin: 0 auto 22px;
+    position: relative;
+  }
+  .rythme {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 28px;
+    padding: 0;
+    list-style: none;
+    position: relative;
+  }
+  .rythme li {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .rythme .i { color: var(--turquoise-doux); }
+  .rythme .e { color: var(--ciel); }
+  .bouton-play {
+    display: inline-block;
+    position: relative;
+    padding: 14px 34px;
+    border-radius: 30px;
+    background: var(--turquoise);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .bouton-play:hover,
+  .bouton-play:focus-visible {
+    background: #35bbb2;
+    transform: translateY(-1px);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 64px 0 22px;
+    text-align: center;
+  }
+
+  /* Galerie : défilement horizontal aimanté, comme sur la fiche Play. */
+  .galerie {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 4px 14px;
+    margin: 0 -4px;
+  }
+  .galerie img {
+    flex: 0 0 auto;
+    width: 220px;
+    height: auto;
+    aspect-ratio: 1 / 2;
+    border-radius: 16px;
+    border: 1px solid var(--bordure);
+    scroll-snap-align: center;
+  }
+  @media (min-width: 1060px) {
+    .galerie { justify-content: center; overflow-x: visible; }
+    .galerie img { width: 190px; }
+  }
+
+  .methode {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--texte-att);
+  }
+  .methode p { margin: 0 0 12px; }
+  .methode strong { color: var(--texte); }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  @media (min-width: 900px) {
+    .grille { grid-template-columns: repeat(3, 1fr); }
+  }
+  .fonctionnalite {
+    background: var(--panneau);
+    border: 1px solid var(--bordure);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .fonctionnalite .titre {
+    font-weight: 700;
+    color: var(--turquoise-doux);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .fonctionnalite:nth-child(even) .titre { color: var(--ciel); }
+  .fonctionnalite p {
+    margin: 0;
+    color: var(--texte-att);
+    font-size: 0.92rem;
+  }
+
+  .bandeau {
+    margin-top: 56px;
+    text-align: center;
+    padding: 26px 22px;
+    background: var(--panneau);
+    border: 1px solid var(--bordure);
+    border-radius: 14px;
+  }
+  .bandeau p { margin: 0; color: var(--texte-att); }
+  .bandeau p + p { margin-top: 10px; }
+  .prudence { font-size: 0.88rem; }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bordure);
+    color: var(--texte-att);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  footer a { color: var(--texte-att); }
+  footer a:hover { color: var(--turquoise-doux); }
+
+  @media (max-width: 560px) {
+    .icone { margin-top: 72px; width: 80px; height: 80px; }
+    .hero {
+      background:
+        radial-gradient(circle at 50% 160px, rgba(43, 168, 160, 0.50) 0, rgba(43, 168, 160, 0.16) 110px, transparent 250px),
+        linear-gradient(to bottom, #1a5a70 0%, var(--fond) 100%);
+    }
+    .ondes { top: 160px; }
+    .ondes span:nth-child(1) { width: 150px; height: 150px; }
+    .ondes span:nth-child(2) { width: 230px; height: 230px; }
+    .ondes span:nth-child(3) { width: 320px; height: 320px; }
+    h1 { font-size: 2.1rem; }
+    .galerie img { width: 62vw; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="ondes" aria-hidden="true"><span></span><span></span><span></span></div>
+  <nav>
+    <button id="bouton-langue" type="button">LANGUAGE: ENGLISH</button>
+  </nav>
+
+  <img class="icone" src="images/icone.png" alt="" width="96" height="96">
+  <h1 class="txt-fr">Cohérence cardiaque</h1>
+  <h1 class="txt-en">Heart Coherence</h1>
+  <p class="tagline txt-fr">La respiration guidée 365, gratuite&nbsp;: suivez la bulle, ou fermez les yeux et laissez-vous guider par les vibrations et les sons, même écran verrouillé.</p>
+  <p class="tagline txt-en">Free guided 365 breathing: follow the bubble, or close your eyes and let the vibrations and sounds guide you, even with the screen locked.</p>
+
+  <ul class="rythme txt-fr">
+    <li>3 fois par jour</li>
+    <li class="i">6 respirations / min</li>
+    <li class="e">5 minutes</li>
+  </ul>
+  <ul class="rythme txt-en">
+    <li>3 times a day</li>
+    <li class="i">6 breaths / min</li>
+    <li class="e">5 minutes</li>
+  </ul>
+  <br>
+  <a class="bouton-play txt-fr" href="https://play.google.com/store/apps/details?id=com.coherencecardiaque.app" target="_blank" rel="noopener">Télécharger sur Google Play</a>
+  <a class="bouton-play txt-en" href="https://play.google.com/store/apps/details?id=com.coherencecardiaque.app" target="_blank" rel="noopener">Get it on Google Play</a>
+</header>
+
+<main>
+  <h2 class="txt-fr">Aperçu</h2>
+  <h2 class="txt-en">Preview</h2>
+
+  <div class="galerie txt-fr">
+    <img src="images/fr-01-accueil.jpg" alt="Accueil&nbsp;: séances du jour, série et choix du rythme" loading="lazy" width="540" height="1080">
+    <img src="images/fr-02-inspiration.jpg" alt="Séance&nbsp;: la bulle gonfle à l'inspiration" loading="lazy" width="540" height="1080">
+    <img src="images/fr-03-fin.jpg" alt="Fin de séance&nbsp;: objectif du jour atteint et série" loading="lazy" width="540" height="1080">
+    <img src="images/fr-04-historique.jpg" alt="Historique de la semaine et dernières séances" loading="lazy" width="540" height="1080">
+    <img src="images/fr-05-widget.jpg" alt="Widget sur l'écran d'accueil du téléphone" loading="lazy" width="540" height="1080">
+  </div>
+  <div class="galerie txt-en">
+    <img src="images/en-01-accueil.jpg" alt="Home: today's sessions, streak and rhythm choice" loading="lazy" width="540" height="1080">
+    <img src="images/en-02-inspiration.jpg" alt="Session: the bubble grows as you breathe in" loading="lazy" width="540" height="1080">
+    <img src="images/en-03-fin.jpg" alt="End of session: daily goal reached and streak" loading="lazy" width="540" height="1080">
+    <img src="images/en-04-historique.jpg" alt="Weekly history and latest sessions" loading="lazy" width="540" height="1080">
+    <img src="images/en-05-widget.jpg" alt="Widget on the phone's home screen" loading="lazy" width="540" height="1080">
+  </div>
+
+  <h2 class="txt-fr">La cohérence cardiaque, c'est quoi&nbsp;?</h2>
+  <h2 class="txt-en">What is heart coherence?</h2>
+  <div class="methode txt-fr">
+    <p>Respirer lentement et régulièrement, autour de <strong>6 respirations par minute</strong>, fait varier le rythme du cœur de façon ample et régulière&nbsp;: c'est l'état dit de «&nbsp;cohérence cardiaque&nbsp;». C'est une façon simple de faire une pause, de se détendre et de gérer le stress du quotidien.</p>
+    <p>La méthode la plus connue est la <strong>méthode 365</strong>&nbsp;: <strong>3 fois par jour</strong>, <strong>6 respirations par minute</strong>, pendant <strong>5 minutes</strong>. La régularité compte plus que la durée&nbsp;: l'application vous aide à tenir le rythme, jour après jour.</p>
+  </div>
+  <div class="methode txt-en">
+    <p>Breathing slowly and steadily, at about <strong>6 breaths per minute</strong>, makes your heart rate rise and fall in a wide, regular wave: this is known as “heart coherence”. It is a simple way to take a break, relax and handle everyday stress.</p>
+    <p>The best-known routine is the <strong>365 method</strong>: <strong>3 times a day</strong>, <strong>6 breaths per minute</strong>, for <strong>5 minutes</strong>. Regularity matters more than length: the app helps you keep it up, day after day.</p>
+  </div>
+
+  <h2 class="txt-fr">Ce que fait l'application</h2>
+  <h2 class="txt-en">What the app does</h2>
+
+  <div class="grille">
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Les yeux fermés</div>
+      <div class="titre txt-en">Eyes closed</div>
+      <p class="txt-fr">Vibrations différentes pour inspirer et expirer, sons doux, et une voix facultative pour démarrer. Chaque signal s'active séparément.</p>
+      <p class="txt-en">Distinct vibrations for breathing in and out, soft sounds, and an optional voice to get started. Each signal can be turned on or off.</p>
+    </div>
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Écran verrouillé</div>
+      <div class="titre txt-en">Screen locked</div>
+      <p class="txt-fr">Avec un son ou la voix, la séance continue téléphone posé, écran éteint. La notification affiche le temps restant, avec pause et arrêt.</p>
+      <p class="txt-en">With a sound or the voice on, the session keeps going with the phone down and the screen off. The notification shows the time left, with pause and stop.</p>
+    </div>
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Plusieurs rythmes</div>
+      <div class="titre txt-en">Several rhythms</div>
+      <p class="txt-fr">365 (5&nbsp;s / 5&nbsp;s), Apaisant (4&nbsp;s / 6&nbsp;s), Respiration carrée, Débutant, ou votre propre rythme. Séances de 1 à 20 minutes.</p>
+      <p class="txt-en">365 (5 s / 5 s), Calming (4 s / 6 s), Box breathing, Beginner, or your own rhythm. Sessions from 1 to 20 minutes.</p>
+    </div>
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Objectif et série</div>
+      <div class="titre txt-en">Goal and streak</div>
+      <p class="txt-fr">Objectif du jour (3 séances par défaut), série de jours consécutifs et historique de la semaine et du mois.</p>
+      <p class="txt-en">Daily goal (3 sessions by default), streak of consecutive days, and weekly and monthly history.</p>
+    </div>
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Rappels et widget</div>
+      <div class="titre txt-en">Reminders and widget</div>
+      <p class="txt-fr">Trois rappels réglables, qui se taisent une fois l'objectif du jour atteint. Le widget montre votre progression et lance la séance d'un geste.</p>
+      <p class="txt-en">Three adjustable reminders that stay quiet once the daily goal is reached. The widget shows your progress and starts a session in one tap.</p>
+    </div>
+    <div class="fonctionnalite">
+      <div class="titre txt-fr">Calme jusque dans la forme</div>
+      <div class="titre txt-en">Calm by design</div>
+      <p class="txt-fr">Bulle fluide, mode nuit pour pratiquer dans le noir, commandes masquables d'un toucher. Aucune publicité pendant la respiration.</p>
+      <p class="txt-en">A smooth bubble, a night mode for practising in the dark, controls hidden with one tap. No ads while you breathe.</p>
+    </div>
+  </div>
+
+  <div class="bandeau">
+    <p class="txt-fr">Gratuit, sans compte et sans abonnement, en français et en anglais. Votre historique reste sur votre téléphone. Une bannière publicitaire discrète finance l'application, jamais pendant une séance.</p>
+    <p class="txt-en">Free, no account and no subscription, in English and French. Your history stays on your phone. A discreet banner ad funds the app, never during a session.</p>
+    <p class="prudence txt-fr">L'application propose des exercices de respiration pour la détente et ne remplace pas un avis médical. En cas de malaise, d'étourdissement ou de problème cardiaque ou respiratoire, arrêtez l'exercice et consultez un professionnel de santé.</p>
+    <p class="prudence txt-en">The app offers breathing exercises for relaxation and is not a substitute for medical advice. If you feel unwell or dizzy, or have a heart or breathing problem, stop the exercise and see a health professional.</p>
+  </div>
+
+  <footer>
+    <p class="txt-fr"><a href="confidentialite.html">Politique de confidentialité</a> · Contact&nbsp;: <a href="mailto:oliviertheandroidmaker@gmail.com">oliviertheandroidmaker@gmail.com</a></p>
+    <p class="txt-en"><a href="privacy.html">Privacy Policy</a> · Contact: <a href="mailto:oliviertheandroidmaker@gmail.com">oliviertheandroidmaker@gmail.com</a></p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var html = document.documentElement;
+  var bouton = document.getElementById('bouton-langue');
+  var image = document.querySelector('meta[property="og:image"]');
+
+  function appliquer(langue) {
+    html.setAttribute('data-lang', langue);
+    html.setAttribute('lang', langue);
+    bouton.textContent = langue === 'en' ? 'LANGUE : FRANÇAIS' : 'LANGUAGE: ENGLISH';
+    document.title = langue === 'en'
+      ? 'Heart Coherence — free guided 365 breathing'
+      : 'Cohérence cardiaque — respiration guidée 365 gratuite';
+    image.setAttribute('content', 'https://olivier3dprint.github.io/coherencecardiaque/images/partage-' + langue + '.jpg');
+  }
+
+  // ?lang=en force l'anglais ; sinon on suit la langue du navigateur.
+  var demande = new URLSearchParams(window.location.search).get('lang');
+  var navigateur = (navigator.language || 'fr').toLowerCase();
+  appliquer(demande === 'en' || demande === 'fr' ? demande : (navigateur.indexOf('fr') === 0 ? 'fr' : 'en'));
+
+  bouton.addEventListener('click', function () {
+    appliquer(html.getAttribute('data-lang') === 'en' ? 'fr' : 'en');
+  });
+})();
+</script>
+</body>
+</html>

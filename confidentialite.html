@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité — Cohérence cardiaque</title>
+<link rel="icon" type="image/png" href="images/icone.png">
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0 auto; padding: 2rem 1.25rem 6rem; max-width: 46rem;
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a2228; background: #f6f9f9;
+  }
+  h1 { font-size: 1.9rem; font-weight: 600; margin: 0 0 .3rem; }
+  h2 { font-size: 1.15rem; font-weight: 600; margin: 2.4rem 0 .6rem; }
+  .sub { color: #5a6b72; margin: 0 0 2rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .94rem; }
+  th, td { text-align: left; vertical-align: top; padding: .55rem .6rem; border-bottom: 1px solid #d9e3e4; }
+  th { font-weight: 600; }
+  a { color: #157a74; }
+  footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid #d9e3e4; color: #5a6b72; font-size: .9rem; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e8f1f3; background: #10283f; }
+    .sub, footer { color: #a3bcc6; }
+    th, td { border-bottom-color: #234560; }
+    a { color: #8fdad3; }
+  }
+  @media (max-width: 560px) {
+    table { font-size: .86rem; }
+    /* Sur téléphone, chaque ligne du tableau devient une fiche, avec l'intitulé de chaque case. */
+    tr:first-child { display: none; }
+    tr, td { display: block; }
+    tr { padding: .5rem 0; border-bottom: 1px solid #d9e3e4; }
+    @media (prefers-color-scheme: dark) { tr { border-bottom-color: #234560; } }
+    td { border: 0; padding: .15rem 0; }
+    td::before { content: attr(data-label) "\00a0: "; font-weight: 600; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Politique de confidentialité</h1>
+<p class="sub">Application <strong>Cohérence cardiaque</strong> — dernière mise à jour&nbsp;: 1er novembre 2026</p>
+
+<h2>En résumé</h2>
+<p>
+  Cohérence cardiaque est une application de respiration guidée. Votre historique de
+  séances et vos réglages restent <strong>sur votre téléphone</strong>&nbsp;: ils ne sont
+  jamais envoyés à l'éditeur ni stockés sur un serveur. L'application ne crée aucun
+  compte, ne mesure pas l'audience et ne collecte aucune statistique d'utilisation. Elle
+  ne mesure rien sur vous&nbsp;: ni fréquence cardiaque, ni capteur, ni caméra.
+</p>
+<p>
+  Seule exception, détaillée plus bas&nbsp;: la <strong>bannière publicitaire</strong>, qui
+  implique un échange avec Google.
+</p>
+
+<h2>Responsable du traitement</h2>
+<p>
+  Olivier Popiers — contact&nbsp;: <a href="mailto:oliviertheandroidmaker@gmail.com">oliviertheandroidmaker@gmail.com</a>
+</p>
+
+<h2>Données traitées</h2>
+<table>
+  <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th><th>Destination</th></tr>
+  <tr>
+    <td data-label="Donnée">Historique des séances&nbsp;: date et heure, durée, rythme, séance terminée ou interrompue</td>
+    <td data-label="Finalité">Afficher l'historique, l'objectif du jour et la série</td>
+    <td data-label="Base légale">Exécution du service demandé</td>
+    <td data-label="Destination">Reste sur l'appareil</td>
+  </tr>
+  <tr>
+    <td data-label="Donnée">Réglages&nbsp;: rythme, durée, signaux, rappels, objectif, affichage, langue</td>
+    <td data-label="Finalité">Retrouver vos préférences d'une séance à l'autre</td>
+    <td data-label="Base légale">Exécution du service demandé</td>
+    <td data-label="Destination">Reste sur l'appareil</td>
+  </tr>
+  <tr>
+    <td data-label="Donnée">Fichier de sauvegarde (historique et réglages), seulement si vous le demandez</td>
+    <td data-label="Finalité">Conserver ou transférer vos données vers un autre téléphone</td>
+    <td data-label="Base légale">Exécution du service demandé</td>
+    <td data-label="Destination">L'emplacement que vous choisissez (dossier du téléphone, cloud personnel…)</td>
+  </tr>
+  <tr>
+    <td data-label="Donnée">Identifiant publicitaire et données techniques de l'appareil</td>
+    <td data-label="Finalité">Afficher la bannière publicitaire qui finance l'application</td>
+    <td data-label="Base légale">Consentement (formulaire présenté au premier lancement)</td>
+    <td data-label="Destination">Google et ses partenaires publicitaires</td>
+  </tr>
+</table>
+
+<h2>Autorisations demandées</h2>
+<ul>
+  <li><strong>Notifications</strong>&nbsp;: afficher la séance en cours (temps restant,
+      pause, reprise, arrêt) et les rappels que vous avez activés. Demandée seulement au
+      premier besoin.</li>
+  <li><strong>Service au premier plan «&nbsp;lecture multimédia&nbsp;»</strong> et maintien en
+      éveil&nbsp;: jouer les sons et la voix qui guident la séance, y compris écran
+      verrouillé.</li>
+  <li><strong>Vibreur</strong>&nbsp;: signaler l'inspiration et l'expiration.</li>
+  <li><strong>Démarrage du téléphone</strong>&nbsp;: replanifier vos rappels après un
+      redémarrage.</li>
+</ul>
+
+<h2>Ce que l'application ne fait pas</h2>
+<ul>
+  <li>Aucun compte utilisateur, aucune inscription, aucun abonnement, aucun achat
+      intégré.</li>
+  <li>Aucune localisation.</li>
+  <li>Aucune mesure physiologique&nbsp;: pas de fréquence cardiaque, de capteur, de caméra,
+      ni de lien avec Health Connect ou une montre.</li>
+  <li>Aucune donnée de santé collectée ni transmise.</li>
+  <li>Aucune mesure d'audience, aucun rapport de plantage, aucune statistique
+      d'utilisation.</li>
+  <li>Aucune vente de données.</li>
+</ul>
+
+<h2>Publicité et consentement</h2>
+<p>
+  L'application affiche une bannière servie par Google AdMob sur l'accueil et
+  l'historique, <strong>jamais pendant une séance</strong> ni sur l'écran de fin. Au premier
+  lancement, dans l'Espace économique européen, au Royaume-Uni et en Suisse, un formulaire
+  de consentement conforme au TCF est présenté. <strong>Aucune requête publicitaire n'est
+  faite avant votre réponse.</strong>
+</p>
+<p>
+  Vous pouvez modifier votre choix à tout moment depuis
+  <em>Réglages › Confidentialité et publicité</em>. Le retrait du consentement prend effet
+  immédiatement.
+</p>
+<p>
+  Traitement des données par Google&nbsp;:
+  <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.
+  Vous pouvez aussi réinitialiser ou supprimer votre identifiant publicitaire dans les
+  réglages d'Android (<em>Paramètres › Confidentialité › Annonces</em>).
+</p>
+
+<h2>Services tiers</h2>
+<ul>
+  <li><strong>Google AdMob</strong> — publicité.
+      <a href="https://policies.google.com/privacy">Politique de confidentialité</a></li>
+  <li><strong>Synthèse vocale du téléphone</strong> — lecture de la voix facultative.
+      Seuls des textes fixes («&nbsp;Inspirez&nbsp;», «&nbsp;Expirez&nbsp;», «&nbsp;Bloquez&nbsp;», «&nbsp;Séance
+      terminée&nbsp;») lui sont transmis.</li>
+</ul>
+
+<h2>Conservation et suppression</h2>
+<p>
+  Toutes les données de l'application — historique et réglages — sont stockées
+  <strong>uniquement dans l'espace privé de l'application sur votre appareil</strong>.
+  Elles sont définitivement effacées à la désinstallation ou en vidant les données de
+  l'application depuis les réglages d'Android. Un fichier de sauvegarde que vous avez
+  créé reste où vous l'avez placé, jusqu'à ce que vous le supprimiez.
+</p>
+<p>
+  Si la sauvegarde automatique d'Android est activée sur votre appareil, ces données
+  peuvent être copiées dans votre espace Google Drive personnel, auquel l'éditeur n'a
+  pas accès.
+</p>
+
+<h2>Vos droits</h2>
+<p>
+  Le Règlement général sur la protection des données vous donne des droits d'accès, de
+  rectification, d'effacement, de limitation et d'opposition, ainsi que le droit de
+  retirer votre consentement.
+</p>
+<p>
+  En pratique, l'éditeur ne détenant aucune donnée vous concernant, ces droits
+  s'exercent directement sur l'appareil&nbsp;: retirer le consentement publicitaire depuis
+  les réglages de l'application, vider ses données ou la désinstaller. Pour toute
+  question, écrivez à <a href="mailto:oliviertheandroidmaker@gmail.com">oliviertheandroidmaker@gmail.com</a>.
+</p>
+<p>
+  Vous pouvez introduire une réclamation auprès de la
+  <a href="https://www.cnil.fr">CNIL</a>.
+</p>
+
+<h2>Enfants</h2>
+<p>
+  Cohérence cardiaque ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas
+  sciemment leurs données.
+</p>
+
+<h2>Modifications</h2>
+<p>
+  Cette politique peut évoluer. La date de dernière mise à jour figure en haut de la
+  page&nbsp;; les changements importants seront signalés dans les notes de version de
+  l'application.
+</p>
+
+<footer>
+  <p><a href="index.html">Cohérence cardiaque</a> — <a href="privacy.html">English version</a></p>
+</footer>
+
+</body>
+</html>
